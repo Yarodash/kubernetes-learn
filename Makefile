@@ -12,10 +12,10 @@ delete:
 	kubectl delete -f k8s/dev-namespace.yaml --ignore-not-found=true
 
 build:
-	docker build -t yarodash/test-app ./app
+	docker build -t yarodash/echo-app ./app
 
 push:
-	docker image push yarodash/test-app
+	docker image push yarodash/echo-app
 
 deploy:
 	kubectl delete -f k8s/deploy.yaml --ignore-not-found=true

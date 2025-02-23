@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: echo-container
-        image: yarodash/test-app:latest
+        image: yarodash/echo-app:latest
         resources:
           limits:
             memory: "128Mi"
