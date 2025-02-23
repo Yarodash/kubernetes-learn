@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp
+  namespace: dev
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: myapp
+        image: yarodash/test-app:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+          - containerPort: 8000
+        volumeMounts:
+          - name: i-can-use-it
+            mountPath: /app/mount-test-dir
+      volumes:
+        - name: i-can-use-it
+          persistentVolumeClaim:
+            claimName: my-volume-claim
