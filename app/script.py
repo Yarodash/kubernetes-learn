@@ -14,8 +14,11 @@ random_text = "".join([chr(random.randint(65, 90)) for _ in range(10)])
 
 def append_random_text():
     while True:
-        with open(os.path.join(directory, 'file.txt'), 'r') as f:
-            content = f.read()
+        if os.path.exists(os.path.join(directory, 'file.txt')):
+            with open(os.path.join(directory, 'file.txt'), 'r') as f:
+                content = f.read()
+        else:
+            content = ""
 
         new_content = content + f"{datetime.now()} - {random_text}\n"
         new_content = new_content[-200:]

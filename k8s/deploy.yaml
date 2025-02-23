@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp
+  name: echo-app-deployment
   namespace: dev
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: myapp
+      app: echo-app
   template:
     metadata:
       labels:
-        app: myapp
+        app: echo-app
     spec:
       containers:
-      - name: myapp
+      - name: echo-container
         image: yarodash/test-app:latest
         resources:
           limits:
@@ -23,9 +23,9 @@ spec:
         ports:
           - containerPort: 8000
         volumeMounts:
-          - name: i-can-use-it
+          - name: echo-app-pvc
             mountPath: /app/mount-test-dir
       volumes:
-        - name: i-can-use-it
+        - name: echo-app-pvc
           persistentVolumeClaim:
-            claimName: my-volume-claim
+            claimName: volume-claim
